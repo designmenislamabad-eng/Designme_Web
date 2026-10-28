@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Login | Designmen</title>
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="admin-dashboard.css" />
+</head>
+<body class="login-page">
+  <main class="login-shell" id="loginShell" hidden>
+    <a class="login-brand" href="index.html"><img src="assets/Logo.jpg" alt="Designmen Consulting Engineers" /></a>
+    <section class="login-panel">
+      <p class="eyebrow">Administrator access</p>
+      <h1 id="loginTitle">Sign in</h1>
+      <p class="login-intro" id="loginIntro">Website content workspace</p>
+      <form id="loginForm">
+        <label for="email">Admin email</label>
+        <input id="email" type="email" autocomplete="username" required />
+        <label for="password">Password</label>
+        <input id="password" type="password" minlength="8" autocomplete="current-password" required />
+        <a class="text-button forgot-password" id="forgotPasswordLink" href="admin-forgot-password.html">Forgot password?</a>
+        <button class="btn btn-primary" type="submit" id="loginButton">Sign in</button>
+      </form>
+      <button class="text-button signup-toggle" id="signupToggle" type="button">First time? Create admin account</button>
+      <form id="otpForm" hidden>
+        <label for="otpCode">6-digit email code</label>
+        <input id="otpCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6" required />
+        <button class="btn btn-primary" type="submit" id="verifyOtpButton">Verify code</button>
+        <button class="text-button forgot-password" id="resendOtpButton" type="button">Send a new code</button>
+        <button class="text-button forgot-password" id="changeAccountButton" type="button">Use another account</button>
+      </form>
+      <p class="form-message" id="loginMessage" role="status" aria-live="polite"></p>
+      <a class="back-link" href="index.html">Back to website</a>
+    </section>
+  </main>
+  <p class="loading-state" id="loginLoading" role="status">Preparing secure sign-in...</p>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin-login.js"></script>
+</body>
+</html>

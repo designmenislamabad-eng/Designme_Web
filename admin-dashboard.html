@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Designmen</title>
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="admin-dashboard.css" />
+</head>
+<body class="dashboard-page">
+  <div class="app-shell" id="appShell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers" /></a>
+      <p class="nav-label">Manage website</p>
+      <nav class="dashboard-nav" aria-label="Dashboard sections">
+        <button class="nav-link active" type="button" data-section="projects"><span aria-hidden="true">▦</span>Projects</button>
+        <button class="nav-link" type="button" data-section="news"><span aria-hidden="true">▤</span>News &amp; Events</button>
+        <button class="nav-link" type="button" data-section="hero"><span aria-hidden="true">▧</span>Hero section</button>
+        <button class="nav-link" type="button" data-section="media"><span aria-hidden="true">▣</span>Media Library</button>
+        <button class="nav-link" type="button" data-section="settings"><span aria-hidden="true">⚙</span>Settings</button>
+        <a class="nav-link" href="index.html"><span aria-hidden="true">↗</span>View website</a>
+      </nav>
+      <p class="nav-label pages-label">Website pages</p>
+      <nav class="page-nav" id="pageNavigation" aria-label="Website pages"></nav>
+      <div class="sidebar-footer"><span id="adminEmail"></span><button class="text-button" id="logoutButton" type="button">Sign out</button></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div><p class="eyebrow">Designmen Consulting Engineers</p><h1 id="sectionTitle">Projects</h1></div><span class="connection-status" id="saveStatus">Connected to Supabase</span></header>
+      <div class="content">
+        <section class="dashboard-section active" id="section-projects" data-content-section="projects">
+          <div class="section-heading"><div><h2>Projects portfolio</h2><p>Homepage par nazar aane wale projects select karein aur details/images edit karein.</p></div><button class="btn btn-primary" type="button" data-add="projects">＋ Add project</button></div>
+          <div class="content-grid" id="projectsList"></div>
+        </section>
+        <section class="dashboard-section" id="section-news" data-content-section="news" hidden>
+          <div class="section-heading"><div><h2>News &amp; Events</h2><p>Homepage ke liye news select karein, ya maujooda content update karein.</p></div><button class="btn btn-primary" type="button" data-add="news">＋ Add news</button></div>
+          <div class="content-grid" id="newsList"></div>
+        </section>
+        <section class="dashboard-section" id="section-hero" data-content-section="hero" hidden>
+          <div class="section-heading"><div><h2>Homepage hero slides</h2><p>Slide ka text, image aur homepage par dikhne ka intikhab manage karein.</p></div><button class="btn btn-primary" type="button" data-add="heroSlides">＋ Add slide</button></div>
+          <div class="content-grid" id="heroList"></div>
+        </section>
+        <section class="dashboard-section" id="section-media" data-content-section="media" hidden>
+          <div class="section-heading"><div><h2>Media Library</h2><p>PC se images ya PDFs upload karein. Images content editors mein, PDFs website Downloads mein use honge.</p></div></div>
+          <form class="media-upload-form" id="mediaUploadForm">
+            <label class="media-picker" for="mediaFile"><span>Select image or PDF from this PC</span><input id="mediaFile" name="mediaFile" type="file" accept="image/jpeg,image/png,image/webp,image/avif,application/pdf" required /></label>
+            <button class="btn btn-primary" type="submit" id="mediaUploadButton">Upload to Supabase</button>
+          </form>
+          <p class="media-status" id="mediaStatus" role="status" aria-live="polite"></p>
+          <div class="media-library-grid" id="mediaLibraryList"></div>
+        </section>
+        <section class="dashboard-section" id="section-settings" data-content-section="settings" hidden>
+          <div class="section-heading"><div><h2>Settings</h2><p>Admin account ka password update karein.</p></div></div>
+          <form class="settings-form" id="passwordForm">
+            <label for="newPassword">New password</label><input id="newPassword" type="password" minlength="8" autocomplete="new-password" required />
+            <label for="confirmPassword">Confirm new password</label><input id="confirmPassword" type="password" minlength="8" autocomplete="new-password" required />
+            <button class="btn btn-primary" type="submit">Change password</button>
+          </form>
+        </section>
+        <section class="dashboard-section" id="section-pages" data-content-section="pages" hidden>
+          <div class="section-heading"><div><h2 id="pageEditorTitle">Website page</h2><p>Existing page ke text aur images edit kar ke Supabase par publish karein.</p></div><button class="btn btn-primary" id="savePageButton" type="submit" form="pageContentForm">Save page changes</button></div>
+          <div class="page-editor-layout">
+            <iframe class="page-preview" id="pagePreview" title="Selected website page preview"></iframe>
+            <form class="page-content-form" id="pageContentForm"><p class="page-editor-loading" id="pageEditorLoading">Page preview load ho raha hai...</p><div id="pageTextFields"></div><div id="pageImageFields"></div></form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="loading-state" id="loadingState" role="status">Checking administrator access...</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="editorBackdrop" hidden>
+    <section class="editor-modal" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+      <header class="modal-head"><h2 id="editorTitle">Edit content</h2><button class="icon-close" id="closeEditor" type="button" aria-label="Close editor">×</button></header>
+      <form class="editor-form" id="contentForm"><div class="editor-fields" id="editorFields"></div><p class="form-hint">Image upload Supabase Storage mein save hogi. Aap image URL bhi de sakte hain.</p><div class="form-actions"><button class="btn btn-light" id="cancelEditor" type="button">Cancel</button><button class="btn btn-primary" type="submit">Save changes</button></div></form>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin-dashboard.js"></script>
+</body>
+</html>

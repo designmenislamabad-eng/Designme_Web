@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <title>Our Staff | Designmen Consulting Engineers</title>
+  <link rel="stylesheet" href="inner-pages.css?v=20261027-footer-arrow-fix" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers logo" /><span class="brand-copy"><strong>Designmen</strong><span>Consulting Engineers</span></span></a>
+      <nav class="header-nav" aria-label="Main navigation"><a href="index.html">Home</a><div class="nav-dropdown"><a href="about.html" aria-haspopup="true">About</a><ul class="dropdown-menu">
+        <li><a href="introduction.html">Introduction</a></li><li><a href="funders-message.html">Funder's Message</a></li><li><a href="organization.html">Organization</a></li><li><a href="goals-missions.html">Goals &amp; Missions</a></li><li><a href="teams.html">Teams</a></li><li><a href="staff.html">Staff</a></li><li><a href="social-responsibility.html">Social Responsibility</a></li><li><a href="quality-policy.html">Quality Policy</a></li><li><a href="our-culture.html">Our Culture</a></li><li><a href="our-skills.html">Our Skills</a></li>
+      </ul></div><a href="services.html">Services</a><a href="divisions.html">Divisions</a><a href="projects.html">Projects</a><a href="associates.html">Associates</a><a href="clients.html">Our Clients</a><a href="media.html">Media</a><a href="contact.html">Contact Us</a></nav>
+    </div>
+  </header>
+  <main class="staff-page">
+    <header class="page-image-hero staff-hero"><h1 id="staffTitle">Our Staff</h1></header>
+    <button class="staff-filter-toggle" id="staffFilterToggle" type="button" aria-label="Open staff filters" aria-expanded="false" aria-controls="staffDepartments">
+      <span></span><span></span><span></span>
+    </button>
+    <aside class="projects-sidebar staff-sidebar" aria-label="Filter staff by department">
+      <div class="project-filter-list" id="staffDepartments"></div>
+    </aside>
+    <section class="projects-content staff-content" aria-labelledby="staffTitle">
+      <div class="staff-cards" id="staffCards"></div>
+    </section>
+  </main>
+
+  <dialog class="project-dialog staff-dialog" id="staffDialog" aria-labelledby="staffDialogName">
+    <div class="project-dialog-card staff-dialog-card">
+      <button class="dialog-close" id="closeStaffDialog" type="button" aria-label="Close staff details">&times;</button>
+      <div class="staff-dialog-portrait" id="staffDialogPortrait" aria-hidden="true"></div>
+      <div class="project-dialog-content">
+        <h2 id="staffDialogName"></h2>
+        <p class="staff-dialog-role" id="staffDialogRole"></p>
+        <p class="staff-dialog-department" id="staffDialogDepartment"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer"></footer>
+  <script>
+    const departments = [
+      'Admin & Finance',
+      'Architecture',
+      'BIM & Construction Management',
+      'Business Development',
+      'Contract Management',
+      'GIS & Environment',
+      'Hydropower & Water Resource',
+      'Material',
+      'MEP Engineering',
+      'Structure',
+      'Urban Planning'
+    ];
+
+    const staffMembers = [
+      { name: 'Nawaz Sb', role: 'Manager, Admin and Finance', department: 'Admin & Finance' },
+      { name: 'Nasir Ahmed', role: 'General Manager, Finance', department: 'Admin & Finance' },
+      { name: 'Asma Munir', role: 'Accountant and Assistant Manager', department: 'Admin & Finance' },
+      { name: 'Shahzad', role: 'Receptionist / Admin Assistant', department: 'Admin & Finance' },
+      { name: 'Nasir Khan', role: 'Chief Architect', department: 'Architecture' },
+      { name: 'Noor Ul Haq Siddiqui', role: 'Principal Architect', department: 'Architecture' },
+      { name: 'Syed Waqar Haziq', role: 'Architect', department: 'Architecture' },
+      { name: 'M. Rizwan Rasul', role: 'Architect', department: 'Architecture' },
+      { name: 'Mahmood Pervaiz', role: 'Chief Engineer', department: 'BIM & Construction Management' },
+      { name: 'Imran Khan', role: 'Resident Engineer', department: 'BIM & Construction Management' },
+      { name: 'M. Umair', role: 'BIM Expert', department: 'BIM & Construction Management' },
+      { name: 'Mohsan Khan', role: 'Manager, Business Development and IT', department: 'Business Development' },
+      { name: 'Laiba Jawed', role: 'Assistant Manager', department: 'Business Development' },
+      { name: 'Naeem Ul Haq', role: 'Business Development Officer', department: 'Business Development' },
+      { name: 'Kashif Jauhar', role: 'IT Officer', department: 'Business Development' },
+      { name: 'Mujeeb Ahmed', role: 'Project Manager', department: 'Contract Management' },
+      { name: 'Mahmood Pervaiz', role: 'Chief Engineer', department: 'Contract Management' },
+      { name: 'Hane Ur Rehman', role: 'Contracts Specialist', department: 'Contract Management' },
+      { name: 'M. Ayaz', role: 'Chief Engineer', department: 'Contract Management' },
+      { name: 'Ghulam Abbas', role: 'Social Expert', department: 'GIS & Environment' },
+      { name: 'Tariq Mehmood', role: 'Social Services Project', department: 'GIS & Environment' },
+      { name: 'Bisma Guleraz', role: 'Social Services Project', department: 'GIS & Environment' },
+      { name: 'Sara Yaseen', role: 'GIS Expert', department: 'GIS & Environment' },
+      { name: 'Mohsin Raza', role: 'Health and Safety Expert', department: 'GIS & Environment' },
+      { name: 'Abdul Hameed Khan', role: 'Chief Engineer, Hydropower / Dams', department: 'Hydropower & Water Resource' },
+      { name: 'Najam-us-Saqib', role: 'Principal Engineer', department: 'Hydropower & Water Resource' },
+      { name: 'Zubair Hafeez', role: 'Hydrologist', department: 'Hydropower & Water Resource' },
+      { name: 'Aftab Sarwar', role: 'Chief Electrical Engineer', department: 'MEP Engineering' },
+      { name: 'Mohsan Khan', role: 'Principal Electrical Engineer', department: 'MEP Engineering' },
+      { name: 'Tarib Saleem', role: 'Senior Electrical Engineer', department: 'MEP Engineering' },
+      { name: 'Laiba Jawed', role: 'Electrical Engineer', department: 'MEP Engineering' },
+      { name: 'Saad Ali', role: 'Electrical Engineer', department: 'MEP Engineering' },
+      { name: 'M. Babar', role: 'Senior Mechanical Engineer', department: 'MEP Engineering' },
+      { name: 'Muhammad Rizwan', role: 'Mechanical Engineer', department: 'MEP Engineering' },
+      { name: 'Najeeb Ullah', role: 'Senior Mechanical Engineer', department: 'MEP Engineering' },
+      { name: 'Zeeshan Ul Haq', role: 'Mechanical Engineer', department: 'MEP Engineering' },
+      { name: 'Najib Ahmad Shakir', role: 'Director / Chief Structures', department: 'Structure' },
+      { name: 'Imtiaz Majeed', role: 'Principal Structures Engineer', department: 'Structure' },
+      { name: 'Shahzad Aslam', role: 'Structural Engineer', department: 'Structure' },
+      { name: 'Imran Siddique', role: 'Structural Engineer', department: 'Structure' },
+      { name: 'Khalid Mehmood', role: 'Chief Town Planner', department: 'Urban Planning' },
+      { name: 'Najam-us-Saqib', role: 'Principal Engineer', department: 'Urban Planning' },
+      { name: 'Awais Bajwa', role: 'Engineer', department: 'Urban Planning' }
+    ];
+
+    function escapeStaffText(value) {
+      return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+    }
+
+    function staffInitials(name) {
+      return name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('').toUpperCase();
+    }
+
+    const staffCards = document.getElementById('staffCards');
+    const staffDialog = document.getElementById('staffDialog');
+    const staffDialogName = document.getElementById('staffDialogName');
+    const staffDialogRole = document.getElementById('staffDialogRole');
+    const staffDialogDepartment = document.getElementById('staffDialogDepartment');
+    const staffDialogPortrait = document.getElementById('staffDialogPortrait');
+    const staffFilterToggle = document.getElementById('staffFilterToggle');
+    const staffSidebar = document.querySelector('.staff-sidebar');
+
+    staffFilterToggle.addEventListener('click', () => {
+      const isExpanded = staffFilterToggle.getAttribute('aria-expanded') === 'true';
+      staffFilterToggle.setAttribute('aria-expanded', String(!isExpanded));
+      staffFilterToggle.setAttribute('aria-label', isExpanded ? 'Open staff filters' : 'Close staff filters');
+      staffSidebar.classList.toggle('is-open', !isExpanded);
+    });
+
+    function renderStaff(department) {
+      const visibleStaff = staffMembers.filter((member) => member.department === department);
+
+      staffCards.innerHTML = visibleStaff.length
+        ? visibleStaff.map((member) => `
+          <article class="staff-card">
+            <button class="staff-person-trigger" type="button" aria-label="View ${escapeStaffText(member.name)} details" data-staff-name="${escapeStaffText(member.name)}" data-staff-role="${escapeStaffText(member.role)}" data-staff-department="${escapeStaffText(member.department)}">
+              <span class="staff-portrait" aria-hidden="true"><span>${staffInitials(member.name)}</span></span>
+              <span class="staff-image-overlay"><span class="staff-image-title">${escapeStaffText(member.name)}</span></span>
+            </button>
+          </article>
+        `).join('')
+        : '<p class="staff-empty">No staff profiles are listed for this department.</p>';
+    }
+
+    const departmentList = document.getElementById('staffDepartments');
+    departments.forEach((department, index) => {
+      const filter = document.createElement('button');
+      filter.type = 'button';
+      filter.className = `project-filter staff-department-filter${index === 0 ? ' is-active' : ''}`;
+      if (department === 'Hydropower & Water Resource') {
+        filter.append('Hydropower & Water', document.createElement('br'), 'Resource');
+      } else {
+        filter.textContent = department;
+      }
+      filter.setAttribute('aria-label', department);
+      filter.setAttribute('aria-pressed', String(index === 0));
+      filter.addEventListener('click', () => {
+        departmentList.querySelectorAll('.staff-department-filter').forEach((button) => {
+          button.classList.remove('is-active');
+          button.setAttribute('aria-pressed', 'false');
+        });
+        filter.classList.add('is-active');
+        filter.setAttribute('aria-pressed', 'true');
+        renderStaff(department);
+        staffSidebar.classList.remove('is-open');
+        staffFilterToggle.setAttribute('aria-expanded', 'false');
+        staffFilterToggle.setAttribute('aria-label', 'Open staff filters');
+      });
+      departmentList.appendChild(filter);
+    });
+
+    staffCards.addEventListener('click', (event) => {
+      const trigger = event.target.closest('.staff-person-trigger');
+      if (!trigger) return;
+      staffDialogName.textContent = trigger.dataset.staffName;
+      staffDialogRole.textContent = trigger.dataset.staffRole;
+      staffDialogDepartment.textContent = trigger.dataset.staffDepartment;
+      staffDialogPortrait.textContent = staffInitials(trigger.dataset.staffName);
+      staffDialog.showModal();
+    });
+
+    document.getElementById('closeStaffDialog').addEventListener('click', () => staffDialog.close());
+    staffDialog.addEventListener('click', (event) => {
+      if (event.target === staffDialog) staffDialog.close();
+    });
+
+    renderStaff(departments[0]);
+  </script>
+  <script src="site-footer.js?v=20261027-footer-learn-more-size"></script>
+</body>
+</html>

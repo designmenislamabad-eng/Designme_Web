@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <title>Projects | Designmen Consulting Engineers</title>
+  <link rel="stylesheet" href="inner-pages.css?v=20261027-footer-arrow-fix" />
+</head>
+<body>
+  <header class="page-header"><div class="header-inner"><a class="brand" href="index.html"><img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers logo" /><span class="brand-copy"><strong>Designmen</strong><span>Consulting Engineers</span></span></a><nav class="header-nav" aria-label="Page navigation"><a href="index.html">Home</a><div class="nav-dropdown"><a href="about.html" aria-haspopup="true">About</a><ul class="dropdown-menu"><li><a href="about.html#introduction">Introduction</a></li><li><a href="about.html#funders-message">Funder's Message</a></li><li><a href="about.html#organization">Organization</a></li><li><a href="about.html#goals-missions">Goals &amp; Missions</a></li><li><a href="about.html#teams">Teams</a></li><li><a href="about.html#staff">Staff</a></li><li><a href="about.html#social-responsibility">Social Responsibility</a></li><li><a href="about.html#quality-policy">Quality Policy</a></li><li><a href="about.html#our-culture">Our Culture</a></li><li><a href="about.html#our-skills">Our Skills</a></li></ul></div><div class="nav-dropdown"><a href="services.html" aria-haspopup="true">Services</a><ul class="dropdown-menu"><li><a href="services.html#conceptual-phase">Conceptual Phase</a></li><li><a href="services.html#planning-phase">Planning Phase</a></li><li><a href="services.html#feasibility-study-phase">Feasibility Study Phase</a></li><li><a href="services.html#pre-construction-phase">Pre-Construction Phase</a></li><li><a href="services.html#construction-phase">Construction Phase</a></li><li><a href="services.html#commissioning-phase">Commissioning Phase</a></li></ul></div><div class="nav-dropdown"><a href="divisions.html" aria-haspopup="true">Divisions</a><ul class="dropdown-menu"><li><a href="divisions.html#architecture-town-planning">Architecture &amp; Town Planning</a></li><li><a href="divisions.html#building-information-modeling">Building Information Modeling</a></li><li><a href="divisions.html#business-development">Business Development</a></li><li><a href="divisions.html#contract-management">Contract Management</a></li><li><a href="divisions.html#electrical-engineering">Electrical Engineering</a></li><li><a href="divisions.html#finance-accounting">Finance &amp; Accounting</a></li><li><a href="divisions.html#fire-life-safety">Fire &amp; Life Safety Design</a></li><li><a href="divisions.html#gis-environment">GIS &amp; Environment Impact Assessment</a></li><li><a href="divisions.html#hydropower-development">Hydropower Development</a></li><li><a href="divisions.html#infrastructure-development">Infrastructure Development</a></li><li><a href="divisions.html#quantity-surveying">Quantity Surveying</a></li><li><a href="divisions.html#water-resources">Water Resources</a></li></ul></div><div class="nav-dropdown"><a class="active" href="projects.html" aria-current="page" aria-haspopup="true">Projects</a><ul class="dropdown-menu"><li><a href="projects.html#assessment-rehabilitation">Assessment &amp; Rehabilitation</a></li><li><a href="projects.html#building-structural-engineering">Building &amp; Structural Engineering</a></li><li><a href="projects.html#steel-structures">Steel Structures</a></li><li><a href="projects.html#contract-construction-management">Contract and Construction Management</a></li><li><a href="projects.html#social-environment-projects">Social and Environment Sector Projects</a></li><li><a href="projects.html#urban-planning">Urban Planning and Infrastructure Design</a></li><li><a href="projects.html#energy-projects">Energy Projects</a></li><li><a href="projects.html#geology-topography">Geology and Topography</a></li><li><a href="projects.html#highway-bridge-engineering">Highway &amp; Bridge Engineering</a></li><li><a href="projects.html#hydel-power-projects">Hydel Power Projects</a></li><li><a href="projects.html#interior-design">Interior Design &amp; Layout Planning</a></li><li><a href="projects.html#repair-maintenance">Repair, Maintenance &amp; Retrofitting</a></li><li><a href="projects.html#water-resources">Water Resources</a></li><li><a href="projects.html#solid-waste-management">Solid Waste Management</a></li><li><a href="projects.html#gis-remote-sensing">GIS and Remote Sensing</a></li></ul></div><a href="associates.html">Associates</a><a href="clients.html">Our Clients</a><a href="media.html">Media</a><a href="contact.html">Contact Us</a></nav></div></header>
+  <main class="projects-page">
+    <header class="projects-intro page-image-hero projects-hero">
+      <div>
+        <h1 id="projects-title">Our Projects</h1>
+      </div>
+    </header>
+    <button class="projects-filter-toggle" id="projectsFilterToggle" type="button" aria-label="Open project filters" aria-expanded="false" aria-controls="projectFilters">
+      <span></span><span></span><span></span>
+    </button>
+    <aside class="projects-sidebar" aria-label="Project filters">
+      <div class="project-filter-list" id="projectFilters"></div>
+    </aside>
+    <section class="projects-content" aria-labelledby="projects-title">
+      <div class="project-cards" id="projectCards"></div>
+    </section>
+  </main>
+  <footer class="site-footer"></footer>
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="project-dialog-card">
+      <button class="dialog-close" id="closeProjectDialog" type="button" aria-label="Close project details">&times;</button>
+      <img id="dialogImage" src="" alt="">
+      <div class="project-dialog-content">
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogDescription"></p>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    const projectCategories = [
+      ['all', 'All Projects'],
+      ['assessment', 'Assessment & Rehabilitation'],
+      ['building', 'Building & Structural Engineering'],
+      ['steel', 'Steel Structures'],
+      ['contract', 'Contract and Construction Management'],
+      ['social', 'Social and Environment Sector Projects'],
+      ['urban', 'Urban Planning and Infrastructure Design'],
+      ['energy', 'Energy Projects'],
+      ['geology', 'Geology and Topography'],
+      ['highway', 'Highway & Bridge Engineering'],
+      ['hydel', 'Hydel Power Projects'],
+      ['interior', 'Interior Design & Layout Planning'],
+      ['repair', 'Repair, Maintenance & Retrofitting'],
+      ['water', 'Water Resources'],
+      ['waste', 'Solid Waste Management'],
+      ['gis', 'GIS and Remote Sensing']
+    ];
+
+    const projectHashMap = {
+      all: '',
+      assessment: 'assessment-rehabilitation',
+      building: 'building-structural-engineering',
+      steel: 'steel-structures',
+      contract: 'contract-construction-management',
+      social: 'social-environment-projects',
+      urban: 'urban-planning',
+      energy: 'energy-projects',
+      geology: 'geology-topography',
+      highway: 'highway-bridge-engineering',
+      hydel: 'hydel-power-projects',
+      interior: 'interior-design',
+      repair: 'repair-maintenance',
+      water: 'water-resources',
+      waste: 'solid-waste-management',
+      gis: 'gis-remote-sensing'
+    };
+
+    const getProjectCategoryFromHash = () => {
+      const requestedProjectHash = (window.location.hash || '').slice(1).trim();
+      return Object.entries(projectHashMap).find(([, hash]) => hash === requestedProjectHash)?.[0] || 'all';
+    };
+
+    const projectIcons = {
+      assessment: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â', building: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â', steel: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â', contract: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹', social: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â',
+      urban: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â', energy: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡', geology: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂªÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨', highway: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â', hydel: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§',
+      interior: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨', repair: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§', water: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§', waste: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â', gis: 'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚ÂÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â'
+    };
+
+    const projectImages = {
+      assessment: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80',
+      building: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80',
+      steel: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80',
+      contract: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80',
+      social: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80',
+      urban: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80',
+      energy: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80',
+      geology: 'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80',
+      highway: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80',
+      hydel: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80',
+      interior: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80',
+      repair: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80',
+      water: 'https://images.unsplash.com/photo-1538300342682-cf57afb97285?auto=format&fit=crop&w=900&q=80',
+      waste: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=900&q=80',
+      gis: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=900&q=80'
+    };
+
+    const projectData = [
+      ['assessment', 'Assessment & Rehabilitation', 'Condition assessment and practical rehabilitation strategies for existing structures.', 'Various Clients', '2023'],
+      ['building', 'Building & Structural Engineering', 'Safe, efficient structures achieving demanding building specifications.', 'Private Developers', '2023-2024'],
+      ['steel', 'Steel Structures', 'Engineering and detailing for durable, efficient steel structures.', 'Industrial Clients', '2023'],
+      ['contract', 'Contract and Construction Management', 'Design oversight and contract administration for complex works.', 'Construction Firms', '2022-2024'],
+      ['social', 'Social and Environment Sector Projects', 'Projects focused on community benefit and environmental responsibility.', 'Government Bodies', '2023'],
+      ['urban', 'Urban Planning and Infrastructure Design', 'Master planning for connected, functional, and viable communities.', 'Municipal Authority', '2023-2024'],
+      ['energy', 'Energy Projects', 'Hydro, thermal, and solar support for reliable energy infrastructure.', 'Energy Companies', '2023'],
+      ['geology', 'Geology and Topography', 'Site characterization and geological engineering assessments.', 'Project Owners', '2023'],
+      ['highway', 'Highway & Bridge Engineering', 'Major infrastructure design for safety, capacity, and durability.', 'Roads Authority', '2021-2023'],
+      ['hydel', 'Hydel Power Projects', 'Hydroelectric power generation support for water management and energy.', 'Power Authority', '2023'],
+      ['interior', 'Interior Design & Layout Planning', 'Interior design concepts that enhance user experience and functionality.', 'Architects & Designers', '2023-2024'],
+      ['repair', 'Repair, Maintenance & Retrofitting', 'Upgrade and repair recommendations for asset life extension.', 'Property Owners', '2023'],
+      ['water', 'Water Resources', 'Water supply, irrigation, and flood management projects.', 'Water Authority', '2022-2024'],
+      ['waste', 'Solid Waste Management', 'Integrated waste management and disposal solutions.', 'Municipal Authority', '2023'],
+      ['gis', 'GIS and Remote Sensing', 'Spatial data analysis and mapping for planning and decision support.', 'Government Agencies', '2023']
+    ];
+
+    const filters = document.getElementById('projectFilters');
+    const cards = document.getElementById('projectCards');
+    const projectSidebar = document.querySelector('.projects-page:not(.divisions-page) .projects-sidebar');
+    const projectsFilterToggle = document.getElementById('projectsFilterToggle');
+
+    projectsFilterToggle.addEventListener('click', () => {
+      const isExpanded = projectsFilterToggle.getAttribute('aria-expanded') === 'true';
+      projectsFilterToggle.setAttribute('aria-expanded', String(!isExpanded));
+      projectsFilterToggle.setAttribute('aria-label', isExpanded ? 'Open project filters' : 'Close project filters');
+      projectSidebar.classList.toggle('is-open', !isExpanded);
+    });
+
+    function renderProjectCards(category) {
+      const visibleProjects = category === 'all' ? projectData : projectData.filter(([type]) => type === category);
+      cards.innerHTML = visibleProjects.map(([type, title, description]) => `
+        <article class="project-item">
+          <button class="project-image-trigger" type="button" aria-label="View project: ${title}" data-project-title="${title}" data-project-description="${description}" data-project-image="${projectImages[type]}">
+            <img class="project-image" src="${projectImages[type]}" alt="" loading="lazy" onerror="this.onerror=null; this.removeAttribute('src'); this.classList.add('image-fallback');">
+            <span class="project-image-overlay"><span class="project-image-title">${title}</span></span>
+          </button>
+        </article>
+      `).join('');
+
+      cards.querySelectorAll('.project-image-trigger').forEach((button) => {
+        button.addEventListener('click', () => {
+          dialogImage.src = button.dataset.projectImage;
+          dialogImage.alt = button.dataset.projectTitle;
+          dialogTitle.textContent = button.dataset.projectTitle;
+          dialogDescription.textContent = button.dataset.projectDescription;
+          projectDialog.showModal();
+        });
+      });
+
+      document.querySelectorAll('.project-filter').forEach((filter) => {
+        const isActive = filter.dataset.categoryId === category;
+        filter.classList.toggle('is-active', isActive);
+        filter.setAttribute('aria-pressed', String(isActive));
+      });
+    }
+
+    projectCategories.forEach(([id, name], index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.categoryId = id;
+      button.className = 'project-filter';
+      button.textContent = name;
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', () => {
+        const nextHash = projectHashMap[id];
+        if (nextHash) {
+          if (window.location.hash !== `#${nextHash}`) {
+            window.location.hash = `#${nextHash}`;
+          }
+        } else if (window.location.hash) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+        renderProjectCards(id);
+        projectSidebar.classList.remove('is-open');
+        projectsFilterToggle.setAttribute('aria-expanded', 'false');
+        projectsFilterToggle.setAttribute('aria-label', 'Open project filters');
+      });
+      filters.appendChild(button);
+    });
+
+    const projectDialog = document.getElementById('projectDialog');
+    const dialogImage = document.getElementById('dialogImage');
+    const dialogTitle = document.getElementById('dialogTitle');
+    const dialogDescription = document.getElementById('dialogDescription');
+    document.getElementById('closeProjectDialog').addEventListener('click', () => projectDialog.close());
+    projectDialog.addEventListener('click', (event) => {
+      if (event.target === projectDialog) projectDialog.close();
+    });
+
+    const syncProjectsWithHash = () => renderProjectCards(getProjectCategoryFromHash());
+    window.addEventListener('hashchange', syncProjectsWithHash);
+    syncProjectsWithHash();
+  </script>
+  <script src="site-footer.js?v=20261022-mobile-nav-selection5"></script>
+</body>
+</html>

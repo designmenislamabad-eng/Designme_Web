@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <title>News and Events | Designmen Consulting Engineers</title>
+  <link rel="stylesheet" href="inner-pages.css?v=20261027-footer-arrow-fix" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-inner"><a class="brand" href="index.html"><img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers logo" /></a><nav class="header-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="divisions.html">Divisions</a><a href="projects.html">Projects</a><a href="associates.html">Associates</a><a href="clients.html">Our Clients</a><div class="nav-dropdown"><a href="#media-menu" aria-haspopup="true">Media</a><ul class="dropdown-menu"><li><a class="active" aria-current="page" href="news-events.html">News and Events</a></li><li><a href="gallery.html">Gallery</a></li></ul></div><a href="contact.html">Contact Us</a></nav></div>
+  </header>
+  <main class="page-main news-events-page">
+    <header class="page-hero page-image-hero news-events-hero">
+      <h1>News and Events</h1>
+    </header>
+    <section class="news-events-grid" aria-label="News and events">
+      <article class="news-event-card">
+        <div class="news-event-image-wrap">
+          <img class="news-event-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Engineers working at a construction site" loading="lazy" />
+          <time class="news-event-date" datetime="2025-01-27T10:14:45">27/01/2025 10:14:45 am</time>
+        </div>
+        <div class="news-event-content">
+          <h2>Aghan Khan Schools Rehabilitation Project (AKES),</h2>
+          <p>Schools in Muhammadanbad, Nasirabad and Chatorkhand are near their completion stage under the supervision of Designmen Consulting Engineers.</p>
+          <button class="news-event-more" type="button" aria-expanded="false">Learn more</button>
+        </div>
+      </article>
+      <article class="news-event-card">
+        <div class="news-event-image-wrap">
+          <img class="news-event-image" src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Colleague holding a portfolio" loading="lazy" />
+        </div>
+        <div class="news-event-content">
+          <h2>Mr. Iqbal Hussain - Head of Composing and Reporting Section</h2>
+          <p>Mr. Iqbal Hussain - Head of Composing and Reporting Section working with Designmen since 2002.</p>
+          <button class="news-event-more" type="button" aria-expanded="false">Learn more</button>
+        </div>
+      </article>
+      <article class="news-event-card">
+        <div class="news-event-image-wrap">
+          <img class="news-event-image" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Team meeting to discuss a project" loading="lazy" />
+        </div>
+        <div class="news-event-content">
+          <h2>Agreement Signing for Shifa Tameer-e-Millat Building</h2>
+          <p>Design Services for Construction of National College for Business and Management Studies (NCBMS).</p>
+          <button class="news-event-more" type="button" aria-expanded="false">Learn more</button>
+        </div>
+      </article>
+    </section>
+    <div class="news-events-pagination">
+      <button class="news-events-load-more" type="button" hidden>Read More</button>
+    </div>
+  </main>
+  <script>
+    const newsEventCards = document.querySelectorAll('.news-event-card');
+    const newsEventsPageSize = 20;
+    const newsEventsLoadMore = document.querySelector('.news-events-load-more');
+    let visibleNewsEvents = newsEventsPageSize;
+
+    if (newsEventCards.length > newsEventsPageSize) {
+      newsEventCards.forEach((card, index) => {
+        card.hidden = index >= visibleNewsEvents;
+      });
+      newsEventsLoadMore.hidden = false;
+      newsEventsLoadMore.addEventListener('click', () => {
+        visibleNewsEvents = Math.min(visibleNewsEvents + newsEventsPageSize, newsEventCards.length);
+        newsEventCards.forEach((card, index) => {
+          card.hidden = index >= visibleNewsEvents;
+        });
+        newsEventsLoadMore.hidden = visibleNewsEvents >= newsEventCards.length;
+      });
+    }
+
+    const setNewsEventCardExpanded = (card, expanded) => {
+      const button = card.querySelector('.news-event-more');
+      if (!button) return;
+      card.classList.toggle('expanded', expanded);
+      button.textContent = expanded ? 'Show less' : 'Learn more';
+      button.setAttribute('aria-expanded', String(expanded));
+    };
+
+    newsEventCards.forEach((card) => {
+      const button = card.querySelector('.news-event-more');
+      if (!button) return;
+      button.addEventListener('click', () => {
+        setNewsEventCardExpanded(card, !card.classList.contains('expanded'));
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const clickedCard = event.target instanceof Element ? event.target.closest('.news-event-card') : null;
+      newsEventCards.forEach((card) => {
+        if (card !== clickedCard && card.classList.contains('expanded')) setNewsEventCardExpanded(card, false);
+      });
+    });
+  </script>
+  <footer class="site-footer"></footer><script src="site-footer.js?v=20261022-mobile-nav-selection5"></script>
+</body>
+</html>

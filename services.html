@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <title>All Services | Designmen Consulting Engineers</title>
+  <link rel="stylesheet" href="inner-pages.css?v=20261027-footer-arrow-fix" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers logo" />
+        <div class="brand-copy">
+          <strong>Designmen</strong>
+          <span>Consulting Engineers</span>
+        </div>
+      </div>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <div class="nav-dropdown"><a href="about.html" aria-haspopup="true">About</a><ul class="dropdown-menu"><li><a href="about.html#introduction">Introduction</a></li><li><a href="about.html#funders-message">Funder's Message</a></li><li><a href="about.html#organization">Organization</a></li><li><a href="about.html#goals-missions">Goals &amp; Missions</a></li><li><a href="about.html#teams">Teams</a></li><li><a href="about.html#staff">Staff</a></li><li><a href="about.html#social-responsibility">Social Responsibility</a></li><li><a href="about.html#quality-policy">Quality Policy</a></li><li><a href="about.html#our-culture">Our Culture</a></li><li><a href="about.html#our-skills">Our Skills</a></li></ul></div>
+        <div class="nav-dropdown"><a class="active" href="services.html" aria-current="page" aria-haspopup="true">Services</a><ul class="dropdown-menu"><li><a href="services.html#conceptual-phase">Conceptual Phase</a></li><li><a href="services.html#planning-phase">Planning Phase</a></li><li><a href="services.html#feasibility-study-phase">Feasibility Study Phase</a></li><li><a href="services.html#pre-construction-phase">Pre-Construction Phase</a></li><li><a href="services.html#construction-phase">Construction Phase</a></li><li><a href="services.html#commissioning-phase">Commissioning Phase</a></li></ul></div>
+        <div class="nav-dropdown"><a href="divisions.html" aria-haspopup="true">Divisions</a><ul class="dropdown-menu"><li><a href="divisions.html#architecture-town-planning">Architecture &amp; Town Planning</a></li><li><a href="divisions.html#building-information-modeling">Building Information Modeling</a></li><li><a href="divisions.html#business-development">Business Development</a></li><li><a href="divisions.html#contract-management">Contract Management</a></li><li><a href="divisions.html#electrical-engineering">Electrical Engineering</a></li><li><a href="divisions.html#finance-accounting">Finance &amp; Accounting</a></li><li><a href="divisions.html#fire-life-safety">Fire &amp; Life Safety Design</a></li><li><a href="divisions.html#gis-environment">GIS &amp; Environment Impact Assessment</a></li><li><a href="divisions.html#hydropower-development">Hydropower Development</a></li><li><a href="divisions.html#infrastructure-development">Infrastructure Development</a></li><li><a href="divisions.html#quantity-surveying">Quantity Surveying</a></li><li><a href="divisions.html#water-resources">Water Resources</a></li></ul></div>
+        <div class="nav-dropdown"><a href="projects.html" aria-haspopup="true">Projects</a><ul class="dropdown-menu"><li><a href="projects.html#assessment-rehabilitation">Assessment &amp; Rehabilitation</a></li><li><a href="projects.html#building-structural-engineering">Building &amp; Structural Engineering</a></li><li><a href="projects.html#steel-structures">Steel Structures</a></li><li><a href="projects.html#contract-construction-management">Contract and Construction Management</a></li><li><a href="projects.html#social-environment-projects">Social and Environment Sector Projects</a></li><li><a href="projects.html#urban-planning">Urban Planning and Infrastructure Design</a></li><li><a href="projects.html#energy-projects">Energy Projects</a></li><li><a href="projects.html#geology-topography">Geology and Topography</a></li><li><a href="projects.html#highway-bridge-engineering">Highway &amp; Bridge Engineering</a></li><li><a href="projects.html#hydel-power-projects">Hydel Power Projects</a></li><li><a href="projects.html#interior-design">Interior Design &amp; Layout Planning</a></li><li><a href="projects.html#repair-maintenance">Repair, Maintenance &amp; Retrofitting</a></li><li><a href="projects.html#water-resources">Water Resources</a></li><li><a href="projects.html#solid-waste-management">Solid Waste Management</a></li><li><a href="projects.html#gis-remote-sensing">GIS and Remote Sensing</a></li></ul></div>
+        <a href="associates.html">Associates</a>
+        <a href="clients.html">Our Clients</a>
+        <div class="nav-dropdown"><a href="media.html" aria-haspopup="true">Media</a><ul class="dropdown-menu"><li><a href="media.html#news-events">News and Events</a></li><li><a href="media.html#gallery">Gallery</a></li></ul></div>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="projects-page services-page">
+    <header class="division-cover page-image-hero services-cover services-hero">
+      <h1>Our Services</h1>
+    </header>
+    <button class="services-filter-toggle" id="servicesFilterToggle" type="button" aria-label="Open service filters" aria-expanded="false" aria-controls="serviceFilters">
+      <span></span><span></span><span></span>
+    </button>
+    <aside class="projects-sidebar" aria-label="Service phases">
+      <div class="project-filter-list" id="serviceFilters"></div>
+    </aside>
+    <section class="projects-content" aria-label="Selected service phase">
+      <div class="project-cards" id="serviceDetails"></div>
+    </section>
+  </main>
+  <footer class="site-footer"></footer>
+  <script src="site-footer.js?v=20261022-mobile-nav-selection5"></script>
+  <script>
+    const services = [
+      ['conceptual-phase', 'Conceptual Phase', 'Early project definition, needs assessment, concept development, and initial technical direction.', 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85'],
+      ['planning-phase', 'Planning Phase', 'Planning studies, option assessment, programming, and coordinated project development.', 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85'],
+      ['feasibility-study-phase', 'Feasibility Study Phase', 'Technical, financial, environmental, and operational studies to test project viability.', 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85'],
+      ['pre-construction-phase', 'Pre-Construction Phase', 'Detailed design, tender documentation, approvals, procurement, and construction readiness.', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85'],
+      ['construction-phase', 'Construction Phase', 'Construction supervision, contract administration, quality review, and delivery coordination.', 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=85'],
+      ['commissioning-phase', 'Commissioning Phase', 'Testing, commissioning, handover support, documentation, and closeout for operational readiness.', 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=85']
+    ];
+
+    const serviceFilters = document.getElementById('serviceFilters');
+    const serviceDetails = document.getElementById('serviceDetails');
+    const serviceSidebar = document.querySelector('.services-page .projects-sidebar');
+    const servicesFilterToggle = document.getElementById('servicesFilterToggle');
+    const mobileServices = window.matchMedia('(max-width: 760px)');
+
+    servicesFilterToggle.addEventListener('click', () => {
+      const isExpanded = servicesFilterToggle.getAttribute('aria-expanded') === 'true';
+      servicesFilterToggle.setAttribute('aria-expanded', String(!isExpanded));
+      servicesFilterToggle.setAttribute('aria-label', isExpanded ? 'Open service filters' : 'Close service filters');
+      serviceSidebar.classList.toggle('is-open', !isExpanded);
+    });
+
+    function renderService(serviceId) {
+      const showingAll = serviceId === 'all';
+      const selectedServices = showingAll
+        ? services
+        : [services.find((item) => item[0] === serviceId) || services[0]];
+      serviceFilters.querySelectorAll('.project-filter').forEach((button) => {
+        const isActive = button.dataset.serviceId === serviceId;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      serviceDetails.innerHTML = selectedServices.map((service) => `
+          <article class="project-item" id="${service[0]}">
+            <img class="project-image" src="${service[3]}" alt="${service[1]}" loading="lazy">
+            <div class="project-item-body">
+              <h2>${service[1]}</h2>
+              <p>${service[2]}</p>
+            </div>
+          </article>`).join('');
+    }
+
+    const allServicesFilter = document.createElement('button');
+    allServicesFilter.type = 'button';
+    allServicesFilter.className = 'project-filter';
+    allServicesFilter.dataset.serviceId = 'all';
+    allServicesFilter.textContent = 'All Services';
+    allServicesFilter.addEventListener('click', () => {
+      renderService('all');
+      serviceSidebar.classList.remove('is-open');
+      servicesFilterToggle.setAttribute('aria-expanded', 'false');
+      servicesFilterToggle.setAttribute('aria-label', 'Open service filters');
+    });
+    serviceFilters.appendChild(allServicesFilter);
+
+    services.forEach((service) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'project-filter';
+      button.dataset.serviceId = service[0];
+      button.textContent = service[1];
+      button.addEventListener('click', () => {
+        renderService(service[0]);
+        serviceSidebar.classList.remove('is-open');
+        servicesFilterToggle.setAttribute('aria-expanded', 'false');
+        servicesFilterToggle.setAttribute('aria-label', 'Open service filters');
+      });
+      serviceFilters.appendChild(button);
+    });
+
+    const syncServiceWithHash = () => {
+      const requestedService = window.location.hash.slice(1);
+      renderService(
+        services.some((service) => service[0] === requestedService)
+          ? requestedService
+          : mobileServices.matches ? 'all' : services[0][0]
+      );
+    };
+
+    window.addEventListener('hashchange', syncServiceWithHash);
+    mobileServices.addEventListener('change', () => {
+      if (!window.location.hash) syncServiceWithHash();
+    });
+    syncServiceWithHash();
+  </script>
+</body>
+</html>

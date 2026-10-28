@@ -1,0 +1,3 @@
+window.DESIGNMEN_SUPABASE_URL = 'https://bmeriawhcudmgzjunlpy.supabase.co';
+window.DESIGNMEN_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtZXJpYXdoY3VkbWd6anVubHB5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNjY1OTIsImV4cCI6MjEwODc0MjU5Mn0.xCFv0jIc4_ENk9pPDov04B9fg_xcba14t_VdKSkUseY';
+window.DESIGNMEN_ADMIN_EMAIL = 'designmenislamabad@gmail.com';

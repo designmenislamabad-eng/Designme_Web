@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <title>Gallery | Designmen Consulting Engineers</title>
+  <link rel="stylesheet" href="inner-pages.css?v=20261027-footer-arrow-fix" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-inner"><a class="brand" href="index.html"><img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers logo" /></a><nav class="header-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="divisions.html">Divisions</a><a href="projects.html">Projects</a><a href="associates.html">Associates</a><a href="clients.html">Our Clients</a><div class="nav-dropdown"><a href="#media-menu" aria-haspopup="true">Media</a><ul class="dropdown-menu"><li><a href="news-events.html">News and Events</a></li><li><a class="active" aria-current="page" href="gallery.html">Gallery</a></li></ul></div><a href="contact.html">Contact Us</a></nav></div>
+  </header>
+  <main class="page-main">
+    <header class="page-hero page-image-hero gallery-hero"><h1>Gallery</h1></header>
+    <div class="content-grid media-gallery">
+      <article class="content-card"><button class="media-gallery-figure" type="button" data-gallery-title="Construction Projects" aria-label="Open Construction Projects image"><img class="media-gallery-image" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Construction project site" /><span class="media-gallery-caption"><strong>Construction Projects</strong></span></button></article>
+      <article class="content-card"><button class="media-gallery-figure" type="button" data-gallery-title="Architecture" aria-label="Open Architecture image"><img class="media-gallery-image" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Contemporary building design" /><span class="media-gallery-caption"><strong>Architecture</strong></span></button></article>
+      <article class="content-card"><button class="media-gallery-figure" type="button" data-gallery-title="Steel Structures" aria-label="Open Steel Structures image"><img class="media-gallery-image" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Steel fabrication work" /><span class="media-gallery-caption"><strong>Steel Structures</strong></span></button></article>
+      <article class="content-card"><button class="media-gallery-figure" type="button" data-gallery-title="Project Delivery" aria-label="Open Project Delivery image"><img class="media-gallery-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Engineering team at a construction site" /><span class="media-gallery-caption"><strong>Project Delivery</strong></span></button></article>
+    </div>
+    <div class="media-gallery-pagination">
+      <button class="media-gallery-load-more" type="button" hidden>Show More</button>
+    </div>
+  </main>
+  <dialog class="gallery-dialog" id="galleryDialog" aria-labelledby="galleryDialogTitle">
+    <div class="gallery-dialog-panel">
+      <button class="gallery-dialog-close" id="closeGalleryDialog" type="button" aria-label="Close image">&times;</button>
+      <img class="gallery-dialog-image" id="galleryDialogImage" src="" alt="" />
+      <div class="gallery-dialog-title" id="galleryDialogTitle"></div>
+    </div>
+  </dialog>
+  <script>
+    const galleryDialog = document.getElementById('galleryDialog');
+    const galleryDialogImage = document.getElementById('galleryDialogImage');
+    const galleryDialogTitle = document.getElementById('galleryDialogTitle');
+    const galleryCards = [...document.querySelectorAll('.media-gallery > .content-card')];
+    const galleryLoadMore = document.querySelector('.media-gallery-load-more');
+    const galleryPageSize = 30;
+    let visibleGalleryCards = galleryPageSize;
+
+    if (galleryCards.length > galleryPageSize) {
+      galleryCards.forEach((card, index) => {
+        card.hidden = index >= visibleGalleryCards;
+      });
+      galleryLoadMore.hidden = false;
+      galleryLoadMore.addEventListener('click', () => {
+        visibleGalleryCards = Math.min(visibleGalleryCards + galleryPageSize, galleryCards.length);
+        galleryCards.forEach((card, index) => {
+          card.hidden = index >= visibleGalleryCards;
+        });
+        galleryLoadMore.hidden = visibleGalleryCards >= galleryCards.length;
+      });
+    }
+
+    document.querySelectorAll('.media-gallery-figure').forEach((button) => {
+      button.addEventListener('click', () => {
+        const image = button.querySelector('.media-gallery-image');
+        galleryDialogImage.src = image.currentSrc;
+        galleryDialogImage.alt = image.alt;
+        galleryDialogTitle.textContent = button.dataset.galleryTitle;
+        galleryDialog.showModal();
+      });
+    });
+
+    document.getElementById('closeGalleryDialog').addEventListener('click', () => galleryDialog.close());
+    galleryDialog.addEventListener('click', (event) => {
+      if (event.target === galleryDialog) galleryDialog.close();
+    });
+  </script>
+  <footer class="site-footer"></footer><script src="site-footer.js?v=20261022-mobile-nav-selection5"></script>
+</body>
+</html>

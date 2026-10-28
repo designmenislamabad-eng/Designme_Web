@@ -1,0 +1,67 @@
+.original-homepage {
+  --blue: #292b78;
+  --deep-blue: #002e5b;
+  --yellow: #ffd936;
+  --paper: #f6f8f5;
+  --black: #151515;
+  --gray: #575757;
+  background: #fff;
+  color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.original-homepage .site-header { border: 0; background: #fff; }
+.original-homepage .topbar { max-width: 1240px; margin: auto; padding: 12px 28px; font-size: 13px; }
+.original-homepage .header-main { max-width: 1240px; width: 100%; margin: auto; padding: 18px 28px 0; flex-direction: column; align-items: stretch; gap: 18px; }
+.original-homepage .brand { display: flex; align-items: center; gap: 18px; }
+.original-homepage .brand p { margin: 0; color: var(--gray); font-size: 13px; }
+.original-homepage .logo { width: 60px; height: 60px; border-radius: 0; }
+.original-homepage .site-nav { width: 100%; justify-content: center; gap: 0; padding: 14px 18px; background: var(--blue); }
+.original-homepage .site-nav a { padding: 8px 22px; border-radius: 0; background: transparent; color: #fff; font-size: 15px; }
+.original-homepage .site-nav a:hover, .original-homepage .site-nav a:first-child { color: var(--yellow); }
+.original-homepage .hero { position: relative; min-height: 620px; padding: 0; overflow: hidden; background: #fff; }
+.original-homepage .hero::after { content: ""; position: absolute; inset: 0 0 0 50%; z-index: 0; background: linear-gradient(135deg, transparent 0 11%, #dfe8ef 11% 100%), repeating-linear-gradient(90deg, rgba(0, 46, 91, .08) 0 1px, transparent 1px 46px); }
+.original-homepage .hero::before { content: "ENGINEERING\\A CONSULTING\\A INFRASTRUCTURE"; white-space: pre; position: absolute; right: 7%; top: 50%; z-index: 1; transform: translateY(-50%); color: rgba(0, 46, 91, .12); font-size: clamp(2.2rem, 5vw, 5rem); font-weight: 700; line-height: 1.08; letter-spacing: 2px; }
+.original-homepage .hero-content { position: relative; z-index: 1; max-width: 1240px; width: 100%; margin: auto; padding: 120px 55% 130px 28px; }
+.original-homepage .hero-content p { color: #008ddf; font-size: 15px; }
+.original-homepage .hero-content h1 { max-width: 650px; color: var(--black); font-size: clamp(2.2rem, 4.7vw, 4rem); font-weight: 700; line-height: 1.08; }
+.original-homepage .hero-actions { gap: 14px; }
+.original-homepage .btn { border-radius: 0; padding: 14px 28px; }
+.original-homepage .btn-primary { background: var(--deep-blue); }
+.original-homepage .btn-secondary { border-color: var(--deep-blue); color: var(--deep-blue); }
+.original-homepage .stats { max-width: 900px; margin: -42px auto 0; position: relative; z-index: 2; padding: 0; grid-template-columns: repeat(3, 1fr); }
+.original-homepage .stats-item { border: 0; border-radius: 0; padding: 20px; background: var(--deep-blue); color: #fff; }
+.original-homepage .stats-item:nth-child(2) { background: var(--yellow); color: var(--black); }
+.original-homepage .stats-item:nth-child(3) { background: var(--blue); }
+.original-homepage .stats-item strong { color: inherit; font-size: 38px; }
+.original-homepage .section { max-width: 1240px; margin: auto; padding: 76px 28px; }
+.original-homepage .section-header { max-width: 100%; text-align: center; margin-bottom: 35px; }
+.original-homepage .section-header h2 { color: var(--deep-blue); font-size: 38px; text-transform: uppercase; }
+.original-homepage .section-header p { color: var(--gray); }
+.original-homepage .cards, .original-homepage .project-grid { gap: 24px; }
+.original-homepage .card, .original-homepage .project-card { border: 0; border-radius: 0; border-top: 4px solid var(--yellow); padding: 28px; box-shadow: 0 10px 30px rgba(0, 46, 91, .1); }
+.original-homepage .card h3, .original-homepage .project-card h3 { color: var(--deep-blue); }
+.original-homepage .card a { color: #008ddf; }
+.original-homepage .projects { background: var(--paper); max-width: none; }
+.original-homepage .projects > *, .original-homepage .testimonials > *, .original-homepage .clients > *, .original-homepage .contact > * { max-width: 1184px; margin-left: auto; margin-right: auto; }
+.original-homepage .testimonials { background: #eaf0f4; }
+.original-homepage .testimonial, .original-homepage .logo-item { border: 0; border-radius: 0; box-shadow: 0 8px 22px rgba(0,0,0,.08); }
+.original-homepage .clients { background: #fff; }
+.original-homepage .logo-item { color: var(--deep-blue); min-height: 82px; }
+.original-homepage .contact { background: var(--deep-blue); color: #fff; max-width: none; }
+.original-homepage .contact .section-header h2, .original-homepage .contact h3 { color: #fff; }
+.original-homepage .contact p, .original-homepage .contact a { color: #dce8f1; }
+.original-homepage .site-footer { background: var(--blue); color: #fff; }
+@media (max-width: 900px) {
+  .original-homepage .hero { min-height: 540px; }
+  .original-homepage .hero::after { inset: 0 0 48% 0; background: linear-gradient(135deg, transparent 0 11%, #dfe8ef 11% 100%); }
+  .original-homepage .hero::before { right: 10%; top: 18%; transform: none; font-size: 2rem; }
+  .original-homepage .hero-content { padding: 220px 28px 90px; }
+  .original-homepage .stats { margin-top: -30px; }
+}
+@media (max-width: 600px) {
+  .original-homepage .header-main { padding: 15px; }
+  .original-homepage .topbar { padding: 10px 15px; }
+  .original-homepage .stats { grid-template-columns: 1fr; margin: 0 15px; }
+  .original-homepage .section { padding: 55px 15px; }
+  .original-homepage .section-header h2 { font-size: 29px; }
+}

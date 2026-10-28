@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/web-logo.jpg" type="image/jpeg" />
+  <title>Ongoing Projects | Designmen Consulting Engineers</title>
+  <link rel="stylesheet" href="inner-pages.css?v=20261027-footer-arrow-fix" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/Logo.jpg" alt="Designmen Consulting Engineers logo" /><span class="brand-copy"><strong>Designmen</strong><span>Consulting Engineers</span></span></a>
+      <nav class="header-nav" aria-label="Page navigation">
+        <a href="index.html">Home</a>
+        <div class="nav-dropdown"><a href="about.html" aria-haspopup="true">About</a><ul class="dropdown-menu"><li><a href="about.html#introduction">Introduction</a></li><li><a href="about.html#funders-message">Funder's Message</a></li><li><a href="about.html#organization">Organization</a></li><li><a href="about.html#goals-missions">Goals &amp; Missions</a></li><li><a href="about.html#teams">Teams</a></li><li><a href="about.html#staff">Staff</a></li><li><a href="about.html#social-responsibility">Social Responsibility</a></li><li><a href="about.html#quality-policy">Quality Policy</a></li><li><a href="about.html#our-culture">Our Culture</a></li><li><a href="about.html#our-skills">Our Skills</a></li></ul></div>
+        <div class="nav-dropdown"><a href="services.html" aria-haspopup="true">Services</a><ul class="dropdown-menu"><li><a href="services.html#conceptual-phase">Conceptual Phase</a></li><li><a href="services.html#planning-phase">Planning Phase</a></li><li><a href="services.html#feasibility-study-phase">Feasibility Study Phase</a></li><li><a href="services.html#pre-construction-phase">Pre-Construction Phase</a></li><li><a href="services.html#construction-phase">Construction Phase</a></li><li><a href="services.html#commissioning-phase">Commissioning Phase</a></li></ul></div>
+        <div class="nav-dropdown"><a href="divisions.html" aria-haspopup="true">Divisions</a><ul class="dropdown-menu"><li><a href="divisions.html#architecture-town-planning">Architecture &amp; Town Planning</a></li><li><a href="divisions.html#building-information-modeling">Building Information Modeling</a></li><li><a href="divisions.html#business-development">Business Development</a></li><li><a href="divisions.html#contract-management">Contract Management</a></li><li><a href="divisions.html#electrical-engineering">Electrical Engineering</a></li><li><a href="divisions.html#finance-accounting">Finance &amp; Accounting</a></li><li><a href="divisions.html#fire-life-safety">Fire &amp; Life Safety Design</a></li><li><a href="divisions.html#gis-environment">GIS &amp; Environment Impact Assessment</a></li><li><a href="divisions.html#hydropower-development">Hydropower Development</a></li><li><a href="divisions.html#infrastructure-development">Infrastructure Development</a></li><li><a href="divisions.html#quantity-surveying">Quantity Surveying</a></li><li><a href="divisions.html#water-resources">Water Resources</a></li></ul></div>
+        <a href="projects.html">Projects</a>
+        <a href="associates.html">Associates</a>
+        <a href="clients.html">Our Clients</a>
+        <div class="nav-dropdown"><a href="media.html" aria-haspopup="true">Media</a><ul class="dropdown-menu"><li><a href="media.html#news-events">News and Events</a></li><li><a href="media.html#gallery">Gallery</a></li></ul></div>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main projects-page ongoing-projects-page">
+    <header class="page-hero">
+      <h1>Ongoing Projects</h1>
+      <p>Explore active initiatives, project progress, and upcoming developments being led by Designmen across infrastructure, energy, environment, and civic sectors.</p>
+    </header>
+
+    <div id="projectDirectory"></div>
+  </main>
+
+  <footer class="site-footer"></footer><script src="site-footer.js?v=20261022-mobile-nav-selection5"></script>
+
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="project-dialog-card">
+      <button class="dialog-close" id="closeProjectDialog" type="button" aria-label="Close project details">&times;</button>
+      <img id="dialogImage" src="" alt="">
+      <div class="project-dialog-content">
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogDescription"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const storageKey = 'designmenProjects';
+    const defaultProjects = [
+      { id: '1', name: '60 MW Shalfalam HPP', category: 'Hydropower', status: 'Active', description: 'Hydropower feasibility, design, and project management.' },
+      { id: '2', name: 'Parliament Building, Islamabad', category: 'Buildings', status: 'Completed', description: 'Structural and architectural design services for a national landmark.' },
+      { id: '3', name: 'Strategic Environmental Assessment AJK', category: 'Environment', status: 'Planning', description: 'Environmental planning and impact assessment for regional projects.' },
+      { id: '4', name: 'Agha Khan Schools Rehabilitation Project', category: 'Education', status: 'Active', description: 'School rehabilitation and infrastructure enhancement across northern regions.' },
+      { id: '5', name: 'Design of 600 KW Uthoor HPP Near Dasu', category: 'Hydropower', status: 'Planning', description: 'Hydropower development support and engineering design for a key basin location.' },
+      { id: '6', name: 'Infrastructure Development Phase II, Eighteen', category: 'Infrastructure', status: 'Active', description: 'Public and private infrastructure investment planning and design support.' }
+    ];
+
+    const projectImages = [
+      'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80'
+    ];
+
+    function loadProjects() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+        return Array.isArray(saved) && saved.length ? saved : defaultProjects;
+      } catch (error) {
+        return defaultProjects;
+      }
+    }
+
+    function slugify(value) {
+      return String(value).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'project';
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+    }
+
+    const projects = loadProjects();
+    const projectDirectory = document.getElementById('projectDirectory');
+    const selectedKey = new URLSearchParams(window.location.search).get('project');
+    projectDirectory.innerHTML = `
+      <div class="project-cards">
+        ${projects.map((project, index) => `
+          <article class="project-item">
+            <button class="project-image-trigger" type="button" aria-label="View project: ${escapeHtml(project.name)}" data-project-title="${escapeHtml(project.name)}" data-project-description="${escapeHtml(project.description)}" data-project-image="${projectImages[index % projectImages.length]}">
+              <img class="project-image" src="${projectImages[index % projectImages.length]}" alt="" loading="lazy" onerror="this.onerror=null; this.removeAttribute('src'); this.classList.add('image-fallback');">
+              <span class="project-image-overlay"><span class="project-image-title">${escapeHtml(project.name)}</span></span>
+            </button>
+          </article>
+        `).join('')}
+      </div>
+    `;
+
+    const projectDialog = document.getElementById('projectDialog');
+    const dialogImage = document.getElementById('dialogImage');
+    const dialogTitle = document.getElementById('dialogTitle');
+    const dialogDescription = document.getElementById('dialogDescription');
+
+    function openProjectDialog(title, description, image) {
+      dialogImage.src = image;
+      dialogImage.alt = title;
+      dialogTitle.textContent = title;
+      dialogDescription.textContent = description;
+      projectDialog.showModal();
+    }
+
+    projectDirectory.querySelectorAll('.project-image-trigger').forEach((button) => {
+      button.addEventListener('click', () => {
+        openProjectDialog(button.dataset.projectTitle, button.dataset.projectDescription, button.dataset.projectImage);
+      });
+    });
+
+    const selectedProject = projects.find((project) => slugify(project.name) === selectedKey);
+    if (selectedProject) {
+      const selectedIndex = projects.indexOf(selectedProject);
+      openProjectDialog(selectedProject.name, selectedProject.description, projectImages[selectedIndex % projectImages.length]);
+    }
+
+    document.getElementById('closeProjectDialog').addEventListener('click', () => projectDialog.close());
+    projectDialog.addEventListener('click', (event) => {
+      if (event.target === projectDialog) projectDialog.close();
+    });
+  </script>
+</body>
+</html>
