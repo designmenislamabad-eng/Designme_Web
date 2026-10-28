@@ -19,7 +19,7 @@
         <label for="email">Admin email</label>
         <input id="email" type="email" autocomplete="username" required />
         <label for="password">Password</label>
-        <input id="password" type="password" minlength="8" autocomplete="current-password" required />
+        <div class="password-control"><input id="password" type="password" minlength="8" autocomplete="current-password" required /><button class="password-toggle" type="button" data-toggle-password="password" aria-label="Show password" aria-pressed="false">Show</button></div>
         <a class="text-button forgot-password" id="forgotPasswordLink" href="admin-forgot-password.html">Forgot password?</a>
         <button class="btn btn-primary" type="submit" id="loginButton">Sign in</button>
       </form>
@@ -38,6 +38,7 @@
   <p class="loading-state" id="loginLoading" role="status">Preparing secure sign-in...</p>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
+  <script src="password-visibility.js"></script>
   <script src="admin-login.js"></script>
 </body>
 </html>

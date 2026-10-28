@@ -41,7 +41,9 @@ if (window.matchMedia('(max-width: 760px)').matches) {
       if (error) throw error;
       message.textContent = 'Agar admin account mojood hai, reset link inbox mein bhej diya gaya hai.';
     } catch (error) {
-      message.textContent = 'Reset email nahin bheji ja saki. Supabase email provider aur redirect URL check karein.';
+      console.error('Password reset email failed:', error);
+      const detail = error?.message || 'Unknown Supabase Auth error.';
+      message.textContent = `Reset email nahin bheji ja saki: ${detail}`;
       message.classList.add('error');
     } finally {
       submitButton.disabled = false;
