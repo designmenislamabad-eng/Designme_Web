@@ -13,8 +13,13 @@ Do not use the `service_role` / secret key, database password, JWT secret, or SM
 
 1. In Supabase SQL Editor, run `supabase-setup.sql`. It creates the homepage content table, private OTP/MFA tables, the MFA verification function, public image/PDF bucket, and RLS policies. Rerun it after updates.
 2. In Authentication > Providers, enable Email and email confirmation. For the first admin registration, temporarily allow new users, open `admin-login.html`, use **First time? Create admin account** with `designmenislamabad@gmail.com`, and confirm the email. Then turn off public sign-ups again. You can instead create the one account yourself in Authentication > Users. Do not create employee accounts.
-3. In Authentication > URL Configuration, set the Site URL to your website origin. Add both `admin-login.html` and `admin-reset-password.html` as Redirect URLs, for local testing and for the exact deployed website origin. Example local URLs: `http://127.0.0.1:5500/admin-login.html` and `http://127.0.0.1:5500/admin-reset-password.html`.
+3. In Authentication > URL Configuration, set the Site URL to your website origin. Add both `admin-login.html` and `admin-reset-password.html` as Redirect URLs, for local testing and for the exact deployed website origin. Example local URLs: `http://127.0.0.1:5501/admin-login.html` and `http://127.0.0.1:5501/admin-reset-password.html`.
 4. Put the Project URL and publishable/anon key in `supabase-config.js`. Serve the site over localhost or HTTPS, then open `admin-login.html` on desktop.
+5. To enable Google sign-in, configure the OAuth consent screen in Google Cloud Console (add the admin as a test user if the app is in testing mode), then create an OAuth client of type **Web application**. Add `https://bmeriawhcudmgzjunlpy.supabase.co/auth/v1/callback` as an Authorized redirect URI. In Supabase Authentication > Sign In / Providers > Google, enable the provider and enter that OAuth client's Client ID and Client Secret. Keep the Client Secret only in Supabase. In Supabase Authentication > URL Configuration, add these as Redirect URLs:
+   - Local: `http://127.0.0.1:5501/admin-login.html`
+   - Live: `https://designmenislamabad-eng.github.io/DESIGNMEN_Web_Dashboard/admin-login.html`
+
+   The login page only accepts `designmenislamabad@gmail.com`; after Google confirms that account, the admin must still verify the emailed six-digit code before the dashboard opens.
 
 Supabase Auth already owns the `auth.users` table and securely stores password hashes and recovery tokens. Do not create a separate password or forgot-password table and do not insert users through SQL. To check the admin after creating the account in Authentication > Users, run `select id, email, email_confirmed_at from auth.users where lower(email) = 'designmenislamabad@gmail.com';` in SQL Editor. The login page links to `admin-forgot-password.html`, which sends the reset email; its link opens `admin-reset-password.html`, where Supabase Auth updates the password. Password reset email delivery requires the Supabase Email provider; configure custom SMTP for production delivery.
 
@@ -63,8 +68,8 @@ The login flow checks the password first, then emails a six-digit code to the de
 7. Supabase **Authentication > URL Configuration** ke **Redirect URLs** mein apni live site ka reset page add karein:
 	`https://designmenislamabad-eng.github.io/DESIGNMEN_Web_Dashboard/admin-reset-password.html`
 
-	Local test ke liye `http://127.0.0.1:5500/admin-reset-password.html` bhi add karein.
+	Local test ke liye `http://127.0.0.1:5501/admin-reset-password.html` bhi add karein. Google sign-in aur password reset dono ke liye `http://127.0.0.1:5501/admin-login.html` bhi Redirect URLs mein add karein.
 8. Pehli admin registration ke waqt **Authentication > Providers > Email** mein email signups aur confirmation enable karein. Login page ke **First time? Create admin account** se `designmenislamabad@gmail.com` account banayein aur inbox se confirm karein. Phir public signups ko disable kar dein. Signup disabled rakhna ho to admin account ko seedha **Authentication > Users** se create karein.
-9. `admin-login.html` par admin email/password enter karein. Email par 6-digit code aana chahiye; sahi code dene ke baad dashboard khulega. Forgot-password email bhi chalane ke liye Supabase Auth email provider/SMTP configure karein.
+9. `admin-login.html` par admin email/password enter karein ya **Continue with Google** par click karke `designmenislamabad@gmail.com` chunein. Dono flows mein email par six-digit code aayega; sahi code dene ke baad dashboard khulega. Forgot-password email bhi chalane ke liye Supabase Auth email provider/SMTP configure karein.
 
 The browser only uses the public anon key. The Edge Function uses the service-role key privately to write challenge/session records; its table has no browser access. Never expose the service-role key.

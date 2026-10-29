@@ -2,6 +2,8 @@ const adminEmail = 'designmenislamabad@gmail.com';
 const loginForm = document.getElementById('loginForm');
 const loginMessage = document.getElementById('loginMessage');
 const loginButton = document.getElementById('loginButton');
+const googleLoginButton = document.getElementById('googleLoginButton');
+const loginDivider = document.getElementById('loginDivider');
 const forgotPasswordLink = document.getElementById('forgotPasswordLink');
 const signupToggle = document.getElementById('signupToggle');
 const otpForm = document.getElementById('otpForm');
@@ -9,6 +11,11 @@ const otpCode = document.getElementById('otpCode');
 const verifyOtpButton = document.getElementById('verifyOtpButton');
 const resendOtpButton = document.getElementById('resendOtpButton');
 const changeAccountButton = document.getElementById('changeAccountButton');
+const googleSignInPendingKey = 'designmen-google-signin-pending';
+const googleSignInPending = sessionStorage.getItem(googleSignInPendingKey) === 'true';
+sessionStorage.removeItem(googleSignInPendingKey);
+const oauthError = new URLSearchParams(window.location.search).has('error') ||
+  new URLSearchParams(window.location.hash.slice(1)).has('error');
 let signupMode = false;
 
 if (window.matchMedia('(max-width: 760px)').matches) {
@@ -29,11 +36,56 @@ if (window.matchMedia('(max-width: 760px)').matches) {
     loginMessage.textContent = 'Pehle supabase-config.js mein project URL aur anon key set karein.';
     loginMessage.classList.add('error');
   } else {
-    client.auth.getSession().then(async ({ data }) => {
-      if (data.session?.user?.email?.toLowerCase() !== adminEmail) return;
-      const { data: mfa } = await client.functions.invoke('admin-email-mfa', { body: { action: 'status' } });
-      if (mfa?.verified) window.location.replace('admin-dashboard.html');
-      else await client.auth.signOut();
+    if (oauthError) {
+      loginMessage.textContent = 'Google sign-in cancel ho gaya ya complete nahin hua. Dobara try karein.';
+      loginMessage.classList.add('error');
+    }
+
+    client.auth.getSession().then(async ({ data, error }) => {
+      if (error) throw error;
+      const session = data.session;
+      if (!session) {
+        if (googleSignInPending) {
+          loginMessage.textContent = 'Google sign-in complete nahin hua. Supabase provider settings check karke dobara try karein.';
+          loginMessage.classList.add('error');
+        }
+        return;
+      }
+
+      if (session.user.email?.toLowerCase() !== adminEmail) {
+        await client.auth.signOut();
+        if (googleSignInPending || oauthError) {
+          loginMessage.textContent = 'Sirf designated admin Google account sign in kar sakta hai.';
+          loginMessage.classList.add('error');
+        }
+        return;
+      }
+
+      try {
+        const { data: mfa, error: statusError } = await client.functions.invoke('admin-email-mfa', {
+          body: { action: 'status' }
+        });
+        if (statusError) throw statusError;
+        if (mfa?.verified) {
+          window.location.replace('admin-dashboard.html');
+          return;
+        }
+        if (!googleSignInPending) {
+          await client.auth.signOut();
+          return;
+        }
+        await requestCode();
+        showOtpStep();
+      } catch (error) {
+        await client.auth.signOut();
+        loginMessage.textContent = googleSignInPending
+          ? 'Google sign-in ke baad email code start nahin ho saka. MFA function aur email settings check karein.'
+          : 'Sign-in verify nahin ho saka. Dobara sign in karein.';
+        loginMessage.classList.add('error');
+      }
+    }).catch(() => {
+      loginMessage.textContent = 'Sign-in session check nahin ho saka. Page refresh karke dobara try karein.';
+      loginMessage.classList.add('error');
     });
   }
 
@@ -47,6 +99,8 @@ if (window.matchMedia('(max-width: 760px)').matches) {
     otpForm.hidden = false;
     forgotPasswordLink.hidden = true;
     signupToggle.hidden = true;
+    googleLoginButton.hidden = true;
+    loginDivider.hidden = true;
     document.getElementById('loginTitle').textContent = 'Verify your email';
     document.getElementById('loginIntro').textContent = `6-digit code ${adminEmail} par bheja gaya hai.`;
     loginMessage.textContent = '';
@@ -114,10 +168,35 @@ if (window.matchMedia('(max-width: 760px)').matches) {
     document.getElementById('password').autocomplete = signupMode ? 'new-password' : 'current-password';
     forgotPasswordLink.hidden = signupMode;
     signupToggle.textContent = signupMode ? 'Already registered? Sign in' : 'First time? Create admin account';
+    googleLoginButton.hidden = signupMode;
+    loginDivider.hidden = signupMode;
     loginMessage.textContent = signupMode
       ? 'Signup sirf designated admin email ke liye hai. Email confirmation zaroori hai.'
       : '';
     loginMessage.classList.remove('error');
+  });
+
+  googleLoginButton.addEventListener('click', async () => {
+    if (!client) return;
+    googleLoginButton.disabled = true;
+    loginMessage.textContent = '';
+    loginMessage.classList.remove('error');
+    sessionStorage.setItem(googleSignInPendingKey, 'true');
+    try {
+      const { error } = await client.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: new URL('admin-login.html', window.location.href).href,
+          queryParams: { prompt: 'select_account' }
+        }
+      });
+      if (error) throw error;
+    } catch (error) {
+      sessionStorage.removeItem(googleSignInPendingKey);
+      googleLoginButton.disabled = false;
+      loginMessage.textContent = 'Google sign-in shuru nahin ho saka. Supabase mein Google provider setup check karein.';
+      loginMessage.classList.add('error');
+    }
   });
 
   otpForm.addEventListener('submit', async (event) => {
@@ -161,6 +240,8 @@ if (window.matchMedia('(max-width: 760px)').matches) {
     loginForm.hidden = false;
     forgotPasswordLink.hidden = false;
     signupToggle.hidden = false;
+    googleLoginButton.hidden = false;
+    loginDivider.hidden = false;
     signupMode = false;
     loginButton.textContent = 'Sign in';
     signupToggle.textContent = 'First time? Create admin account';
@@ -169,6 +250,7 @@ if (window.matchMedia('(max-width: 760px)').matches) {
     document.getElementById('password').value = '';
     otpCode.value = '';
     loginMessage.textContent = '';
+    loginMessage.classList.remove('error');
   });
 
 }

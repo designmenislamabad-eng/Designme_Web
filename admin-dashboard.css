@@ -242,6 +242,12 @@ td:first-child { font-family: Georgia, "Times New Roman", serif; font-size: 16px
 .login-panel .btn { margin-top: 12px; }
 .login-panel .forgot-password { justify-self: end; margin-top: 2px; }
 .login-panel .signup-toggle { display: block; margin: 18px auto 0; }
+.login-divider { display: flex; align-items: center; gap: 12px; margin: 17px 0; color: #879699; font-size: 12px; }
+.login-divider::before, .login-divider::after { flex: 1; border-top: 1px solid #e1e7e7; content: ''; }
+.login-panel .btn-google { display: flex; width: 100%; min-height: 44px; align-items: center; justify-content: center; gap: 10px; margin-top: 0; border: 1px solid #d7e0e1; background: #fff; color: #344b52; font: 600 14px Arial, sans-serif; cursor: pointer; }
+.login-panel .btn-google:hover { background: #f7f9f9; }
+.login-panel .btn-google:disabled { cursor: wait; opacity: .7; }
+.google-icon { width: 18px; height: 18px; }
 .form-message { min-height: 20px; margin: 14px 0 0; color: #277350; font-size: 12px; line-height: 1.5; }
 .form-message.error { color: #a33e37; }
 .back-link { display: inline-block; margin-top: 12px; color: #167187; font-size: 12px; text-decoration: none; }
